@@ -16,16 +16,56 @@
 
 By downloading, installing, or using **轻净 LiteClean** (the "Application"), you agree to be bound by these Terms of Service. If you do not agree, do not use the Application.
 
-## 2. Free & Open Source
+## 2. Free Software, Source Code and Fees
 
-轻净 LiteClean is a **completely free and open-source** project licensed under the [GNU General Public License v3.0](./LICENSE). You are free to:
+轻净 LiteClean is **free software**, licensed under the [GNU General Public License v3.0](./LICENSE).
+"Free" refers to freedom, not to price. You are free to:
 
-- ✅ Use the Application in compliance with applicable laws and regulations.
+- ✅ **Run** the Application for any purpose, including commercial purposes.
 - ✅ **Study** the source code — <https://github.com/xinpai/LiteClean>
-- ✅ **Modify** and **distribute** under GPL v3 terms
-- ✅ **Contribute** via pull requests
+- ✅ **Modify** the Application and publish your changes.
+- ✅ **Redistribute** copies, modified or unmodified, and you may charge for doing so.
+- ✅ **Contribute** via pull requests.
 
-There are currently no paid features.
+### 2.1 Source code is always free of charge
+
+The complete corresponding source code is permanently and publicly available at
+<https://github.com/xinpai/LiteClean>, free of charge. This is not a courtesy — it is a
+requirement of the GNU GPL v3.0 (section 6), and it applies no matter how you obtained the
+binary.
+
+### 2.2 Paid distribution / 付费获取
+
+The ready-to-run build of 轻净 LiteClean is offered on the project's official website for a
+**one-time payment**. What that payment covers is:
+
+- the **convenience** of a ready-to-run, single-file build, and
+- the **distribution service** itself (hosting, bandwidth, building and packaging).
+
+**It is not a licence fee for using the software.** That licence is already granted to you,
+free of charge, by the GNU GPL v3.0. It follows that:
+
+- Your rights under the GNU GPL v3.0 are **not reduced, conditioned or limited** by whether
+  you paid.
+- You may redistribute the copy you obtained — modified or unmodified, for free or for a
+  fee — without any obligation to us.
+- No "single user", "no resale", "no reverse engineering" or "no redistribution" restriction
+  applies, because the GNU GPL v3.0 does not permit us to add such terms (section 10).
+- Because the source is published, anyone can compile an equivalent build from source at no
+  cost. We do not — and cannot — claim otherwise.
+
+Invoicing, payment and refund terms for purchases made on our website concern that
+transaction only and never restrict the rights granted by the GNU GPL v3.0.
+
+### 2.3 Trademarks / 商标
+
+Under section 7(e) of the GNU GPL v3.0, **no trademark rights are granted** by this licence.
+The names **"轻净 LiteClean"** and **"LiteClean"**, the "XP06" name, and the associated logos
+and icons identify this project's own official builds. You may redistribute the code under
+the GPL v3.0, but a modified or redistributed version must not use these names or logos in a
+way that suggests it is an official release of this project, or that is likely to cause
+confusion. The name **optimizerDuck** belongs to the original author and is likewise not
+licensed for reuse.
 
 ## 3. Safety & Security
 

@@ -68,6 +68,31 @@ All project-specific notices — including this file — are deliberately kept
 
 ---
 
+## Trademarks and branding — GNU GPL v3 §7(e)
+
+In accordance with section 7(e) of the GNU General Public License v3.0, the
+following additional term is added to this licence notice:
+
+> **No trademark rights are granted.**
+>
+> You may copy, modify and redistribute this program's source code and binaries
+> under the terms of the GNU General Public License v3.0, with or without
+> modification, free of charge or for a fee. However, **no right or licence is
+> granted to use the names "轻净 LiteClean", "LiteClean" or "XP06", the
+> accompanying logos and icons, or any confusingly similar mark, to identify or
+> promote a modified or redistributed version of this program.**
+
+This term restricts the use of the names and logos only. It does **not** restrict
+any right that the GNU GPL v3.0 grants you over the program's code: the source
+code remains free, and you may redistribute it — modified or unmodified —
+provided you use your own name and branding.
+
+The name **optimizerDuck** and its associated branding belong to the original
+author (fatDuck / itsfatduck) and are likewise not licensed for reuse under this
+notice.
+
+---
+
 ## Third-party components
 
 See [`THIRD-PARTY-NOTICES.md`](./THIRD-PARTY-NOTICES.md) for the licenses of the
@@ -89,3 +114,14 @@ third-party libraries and resources used by this program.
 `LICENSE` 文件为自由软件基金会发布的 GPLv3 许可协议原文，**未作任何改动**。
 按照 GPLv3 的要求，源码随程序一同提供，任何人可自由获取：
 <https://github.com/xinpai/LiteClean>
+
+### 商标声明（GPLv3 §7(e)）
+
+依据 GNU GPL v3.0 第 7(e) 条，本许可证**不授予任何商标使用权**：
+
+- 「轻净 LiteClean」「LiteClean」「XP06」名称、图标与标识，仅用于标识本项目的官方版本。
+- 你可以依据 GPLv3 自由复制、修改、再分发本程序（免费或收费均可），
+  但**再分发时须更换名称与标识**，不得使用上述名称 / 图标使人误认为本项目的官方版本。
+- 本条仅限制名称与标识的使用，**不限制** GPLv3 就程序代码授予你的任何权利：
+  源码依然自由，修改后再分发只需换一个属于你自己的名字。
+- 名称 **optimizerDuck** 及其标识归原作者（fatDuck / itsfatduck）所有，同样不可用于再分发版本。

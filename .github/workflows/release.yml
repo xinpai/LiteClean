@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Release tag to attach the asset to. Empty = latest release.
+        description: Release tag to verify. Empty = latest release.
         required: false
         type: string
 
@@ -16,8 +16,9 @@ env:
 jobs:
   build:
     runs-on: windows-latest
+    # Read-only: the build output is never uploaded as a release asset.
     permissions:
-      contents: write
+      contents: read
 
     steps:
       - name: Checkout
@@ -60,65 +61,43 @@ jobs:
           $version = $tag -replace '^v', ''
           echo "tag=$tag" >> $env:GITHUB_OUTPUT
           echo "version=$version" >> $env:GITHUB_OUTPUT
-          Write-Host "Attaching assets to release $tag (version $version)"
+          Write-Host "Verifying release build $tag (version $version)"
 
       - name: Rename output file
         run: |
           $version = "${{ steps.get_version.outputs.version }}"
-          # The build publishes LiteClean.exe, and the release asset keeps the "LiteClean-"
-          # prefix: UpdaterService.FindExecutableAsset only matches that prefix plus ".exe".
+          # The published binary gets a stable, versioned file name so that the copy uploaded
+          # to the official website is unambiguous.
           $source = "optimizerDuck/bin/Release/Single/net10.0/publish/win-x64/LiteClean.exe"
           $dest = "LiteClean-Windows-x64-$version.exe"
           Move-Item -Path $source -Destination $dest
         shell: pwsh
 
-      - name: Upload Release Asset
-        uses: softprops/action-gh-release@v3
-        with:
-          tag_name: ${{ steps.get_version.outputs.tag }}
-          files: ./LiteClean-Windows-x64-${{ steps.get_version.outputs.version }}.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Wait for asset to be ready
-        id: verify_asset
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # NOTE: the binary is deliberately NOT attached to the GitHub release.
+      # The ready-to-run build is distributed from the official website only, so that it is
+      # not obtainable free of charge through GitHub. The source code stays public, which is
+      # all that the GNU GPL v3.0 requires (section 6) — see NOTICE.md.
+      - name: Record build checksum
         shell: pwsh
         run: |
-          $tag = "${{ steps.get_version.outputs.tag }}"
-          $owner = "${{ github.repository_owner }}"
-          $repo = "LiteClean"
-          $targetAsset = "LiteClean-Windows-x64-${{ steps.get_version.outputs.version }}.exe"
-
-          $maxRetries = 60
-          $retryDelay = 2
-
-          for ($i = 0; $i -lt $maxRetries; $i++) {
-            try {
-              $response = Invoke-RestMethod -Uri "https://api.github.com/repos/$owner/$repo/releases/tags/$tag" `
-                -Headers @{
-                  "Authorization" = "Bearer $env:GITHUB_TOKEN"
-                  "Accept"        = "application/vnd.github+json"
-                }
-
-              $asset = $response.assets | Where-Object {
-                $_.name -eq $targetAsset -and $_.name -like "*.exe"
-              }
-
-              if ($asset) {
-                Write-Host "::notice::Asset '$targetAsset' found and ready!"
-                echo "verified=true" >> $env:GITHUB_OUTPUT
-                exit 0
-              }
-            } catch {
-              Write-Host "API call failed (attempt $($i+1)): $_"
-            }
-
-            Write-Host "Waiting for asset... attempt $($i+1)/$maxRetries"
-            Start-Sleep -Seconds $retryDelay
-          }
-
-          Write-Host "::error::Asset verification failed after $maxRetries attempts"
-          exit 1
+          $file = "LiteClean-Windows-x64-${{ steps.get_version.outputs.version }}.exe"
+          $hash = (Get-FileHash -Path $file -Algorithm SHA256).Hash
+          $sizeMb = [math]::Round((Get-Item $file).Length / 1MB, 2)
+          $summary = @(
+            "### Release build verified",
+            "",
+            "| | |",
+            "| --- | --- |",
+            "| File | ``$file`` |",
+            "| Size | $sizeMb MB |",
+            "| SHA-256 | ``$hash`` |",
+            "",
+            "The binary is intentionally **not** attached to this release: the ready-to-run build",
+            "is distributed from the official website only. Make sure the file uploaded there has",
+            "the same SHA-256 as above.",
+            "",
+            "Source code (required by GNU GPL v3.0 section 6): https://github.com/${{ github.repository }}"
+          )
+          $summary | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+          Write-Host "::notice::Build verified - SHA-256 $hash ($sizeMb MB)"
 

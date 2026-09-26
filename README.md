@@ -4,7 +4,7 @@
 
 <h1 align="center">轻净 LiteClean</h1>
 
-<p align="center"><b>一款免费的 Windows 优化工具，聚焦性能、隐私与简洁。</b></p>
+<p align="center"><b>一款自由开源的 Windows 优化工具，聚焦性能、隐私与简洁。</b></p>
 
 > [!IMPORTANT]
 > ### 本软件是 optimizerDuck 的修改版本（modified version / fork）
@@ -33,16 +33,21 @@
 
 ---
 
-## 下载
+## 获取与下载
 
-| 内容 | 地址 |
-| --- | --- |
-| 程序（Windows x64） | [Releases](https://github.com/xinpai/LiteClean/releases) |
-| **完整源代码** | <https://github.com/xinpai/LiteClean> |
+| 内容 | 地址 | 费用 |
+| --- | --- | --- |
+| **完整源代码** | <https://github.com/xinpai/LiteClean> | **永久免费** |
+| 成品程序（Windows x64，单文件） | [官网 xp06.com](https://www.xp06.com/) | 一次性付费 |
+| 自行编译（见下节） | 从源码构建 | 免费 |
 
 > [!NOTE]
-> 依据 GNU GPL v3.0，你在获取本程序二进制文件的同时，有权获取**完整的对应源代码**。
-> 源码即上表中的仓库，永久公开可获取，无需任何额外费用。
+> **关于源码**：依据 GNU GPL v3.0 第 6 条，你在获取本程序二进制文件的同时，有权获取
+> **完整的对应源代码**，且源码的获取不收取任何费用。源码即上表中的仓库，永久公开可获取。
+>
+> **关于费用**：官网提供的是**开箱即用的成品包与分发服务**（下载带宽、构建、打包、更新），
+> 而非软件使用许可——使用许可已由 GNU GPL v3.0 免费授予你。你也可以自行从源码编译，
+> 或从任何第三方合法取得本程序，均无需向我们支付任何费用。
 
 ---
 
