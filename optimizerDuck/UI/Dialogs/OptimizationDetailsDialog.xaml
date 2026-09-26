@@ -357,24 +357,6 @@
 
         <ui:CardAction
             Margin="0,0,0,4"
-            Command="{Binding ViewSourceOnGitHubCommand}"
-            Cursor="Hand"
-            Icon="{ui:SymbolIcon Code24}">
-            <StackPanel>
-                <ui:TextBlock
-                    FontTypography="BodyStrong"
-                    Text="{ext:Loc OptimizationDetailsDialog.Other.ViewSource.Title}"
-                    TextWrapping="Wrap" />
-                <ui:TextBlock
-                    FontTypography="Body"
-                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                    Text="{ext:Loc OptimizationDetailsDialog.Other.ViewSource.Description}"
-                    TextWrapping="Wrap" />
-            </StackPanel>
-        </ui:CardAction>
-
-        <ui:CardAction
-            Margin="0,0,0,4"
             Command="{Binding OpenRecordFileCommand}"
             Cursor="Hand"
             Icon="{ui:SymbolIcon History24}"

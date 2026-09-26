@@ -8,11 +8,20 @@ namespace optimizerDuck.Services.System;
 
 public class UpdaterService : IDisposable
 {
-    private const string Owner = "itsfatduck";
-    private const string Repo = "optimizerDuck";
+    private const string Owner = "xinpai";
+    private const string Repo = "LiteClean";
 
     /// <summary>The URL to the latest release page on GitHub.</summary>
     public const string LatestReleaseUrl = $"https://github.com/{Owner}/{Repo}/releases/latest";
+
+    /// <summary>Whether this build advertises newer versions to the user.</summary>
+    /// <remarks>
+    ///     Disabled in the XP06 build: the upstream repository publishes the original
+    ///     optimizerDuck binaries, so advertising an update found there would replace this
+    ///     customised build with the upstream one. Turn this back on once this fork publishes
+    ///     its own release feed.
+    /// </remarks>
+    private static readonly bool UpdatesEnabled = false;
 
     private readonly HttpClient _httpClient;
     private readonly ILogger _logger;
@@ -32,7 +41,7 @@ public class UpdaterService : IDisposable
     /// <returns>The user agent header.</returns>
     internal static ProductInfoHeaderValue BuildUserAgentHeader()
     {
-        return new ProductInfoHeaderValue("optimizerDuck", Shared.FileVersion);
+        return new ProductInfoHeaderValue("LiteClean", Shared.FileVersion);
     }
 
     /// <summary>Parses the version a release tag names.</summary>
@@ -60,7 +69,7 @@ public class UpdaterService : IDisposable
     internal static GitHubAsset? FindExecutableAsset(GitHubRelease? release)
     {
         return release?.Assets.FirstOrDefault(asset =>
-            asset.Name.StartsWith("optimizerDuck", StringComparison.OrdinalIgnoreCase)
+            asset.Name.StartsWith("LiteClean", StringComparison.OrdinalIgnoreCase)
             && asset.Name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)
         );
     }
@@ -72,6 +81,12 @@ public class UpdaterService : IDisposable
     /// </returns>
     public async Task<string?> CheckForUpdatesAsync()
     {
+        if (!UpdatesEnabled)
+        {
+            _logger.LogInformation("Update checks are disabled in this build");
+            return null;
+        }
+
         _logger.LogInformation(
             "Checking for updates (Current version: {CurrentVersion})",
             Shared.FileVersion

@@ -16,14 +16,14 @@ public sealed class AppSettings
     public sealed class AppOptions
     {
         /// <summary>
-        ///     The UI language code (e.g., "en-US").
+        ///     The UI language code (e.g., "zh-CN").
         /// </summary>
-        public string Language { get; set; } = "en-US";
+        public string Language { get; set; } = "zh-CN";
 
         /// <summary>
-        ///     The UI theme (e.g., "Dark").
+        ///     The UI theme (e.g., "Light").
         /// </summary>
-        public ApplicationTheme Theme { get; set; } = ApplicationTheme.Dark;
+        public ApplicationTheme Theme { get; set; } = ApplicationTheme.Light;
 
         public bool LegalAccepted { get; set; } = false;
     }

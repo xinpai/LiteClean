@@ -291,10 +291,18 @@ public class OptimizationService(
         foreach (var opt in optimizations)
         {
             var applied = await RevertManager.IsAppliedAsync(opt.Id).ConfigureAwait(false);
-            opt.State.IsApplied = applied;
-            opt.State.AppliedAt = applied
-                ? (await RevertManager.GetRevertDataAsync(opt.Id).ConfigureAwait(false))?.AppliedAt
+            var revertData = applied
+                ? await RevertManager.GetRevertDataAsync(opt.Id).ConfigureAwait(false)
                 : null;
+
+            // A file without steps is the mark an apply leaves when the machine already matched.
+            // The item stays applied so its toggle holds, but nothing was changed, so it carries
+            // no timestamp and the badge stays "already optimal" instead of "applied".
+            var hasSteps = revertData?.Steps.Any(s => s != null) == true;
+
+            opt.State.IsApplied = applied;
+            opt.State.AppliedAt = hasSteps ? revertData!.AppliedAt : null;
+            opt.State.IsAlreadyOptimal = applied && !hasSteps;
 
             // The record outlives the revert file, so it is read separately and never gates the
             // applied mark.

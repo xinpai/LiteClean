@@ -38,6 +38,31 @@
                 Text="{ext:Loc OptimizationResultDialog.Description}"
                 TextWrapping="Wrap" />
 
+            <!--  A step Windows refused cannot be fixed by retrying, so the dialog says what to do  -->
+            <Border
+                Margin="0,0,0,12"
+                Padding="10,8"
+                Background="{DynamicResource SystemFillColorCautionBackgroundBrush}"
+                BorderBrush="{DynamicResource SystemFillColorCautionBrush}"
+                BorderThickness="1"
+                CornerRadius="{StaticResource CornerRadiusSmall}"
+                Visibility="{Binding HasPermissionHint, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid ColumnDefinitions="Auto,*">
+                    <ui:SymbolIcon
+                        Margin="0,0,8,0"
+                        VerticalAlignment="Center"
+                        Filled="True"
+                        Foreground="{DynamicResource SystemFillColorCautionBrush}"
+                        Symbol="Shield24" />
+                    <ui:TextBlock
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        FontTypography="Caption"
+                        Text="{ext:Loc OptimizationResultDialog.Hint.RequiresAdministrator}"
+                        TextWrapping="Wrap" />
+                </Grid>
+            </Border>
+
             <Border
                 Margin="0,0,0,4"
                 Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"

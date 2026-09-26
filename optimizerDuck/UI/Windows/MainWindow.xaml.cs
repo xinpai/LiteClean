@@ -61,12 +61,33 @@ public partial class MainWindow : IWindow
         RootNavigation.SetPageProviderService(pageProvider);
 
         RootNavigation.Loaded += OnRootNavigationLoaded;
+        RootNavigation.Navigated += OnRootNavigationNavigated;
+    }
+
+    /// <summary>
+    ///     Navigates back to the previous journal entry, triggered from the title bar button.
+    /// </summary>
+    private void OnBackButtonClick(object sender, RoutedEventArgs e)
+    {
+        if (RootNavigation.CanGoBack)
+        {
+            RootNavigation.GoBack();
+        }
+    }
+
+    /// <summary>
+    ///     Keeps the title bar back button in sync with the navigation journal.
+    /// </summary>
+    private void OnRootNavigationNavigated(NavigationView sender, NavigatedEventArgs args)
+    {
+        BackButton.Visibility = RootNavigation.CanGoBack ? Visibility.Visible : Visibility.Collapsed;
     }
 
     internal void UpdatePendingIndicator(bool hasPending)
     {
-        AppTitleText.Text = hasPending ? "optimizerDuck*" : "optimizerDuck";
-        Title = hasPending ? "optimizerDuck*" : "optimizerDuck";
+        var title = hasPending ? $"{Shared.AppName}*" : Shared.AppName;
+        AppTitleText.Text = title;
+        Title = title;
     }
 
     private async void OnRootNavigationLoaded(object sender, RoutedEventArgs e)

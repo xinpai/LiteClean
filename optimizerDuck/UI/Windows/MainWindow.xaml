@@ -6,12 +6,14 @@
     xmlns:controls="clr-namespace:optimizerDuck.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="clr-namespace:optimizerDuck.Common.Extensions"
+    xmlns:helpers="clr-namespace:optimizerDuck.Common.Helpers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pages="clr-namespace:optimizerDuck.UI.Pages"
+    xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:viewmodels="clr-namespace:optimizerDuck.UI.ViewModels.Windows"
     xmlns:windows="clr-namespace:optimizerDuck.UI.Windows"
-    Title="optimizerDuck"
+    Title="{x:Static helpers:Shared.AppName}"
     Width="1350"
     Height="800"
     MinWidth="900"
@@ -32,6 +34,7 @@
             Margin="0"
             Padding="0"
             FrameMargin="0"
+            IsBackButtonVisible="Collapsed"
             IsFooterSeparatorVisible="False"
             IsPaneToggleVisible="True"
             IsTopSeparatorVisible="False"
@@ -115,20 +118,27 @@
                         Symbol="Shield24" />
                     <ui:ImageIcon
                         Height="25"
-                        Margin="8,0,6,0"
+                        Margin="8,0,8,0"
                         VerticalAlignment="Center"
-                        Source="pack://application:,,,/Resources/Images/Duck.png" />
+                        Source="pack://application:,,,/Resources/Images/LiteClean.png" />
                     <ui:TextBlock
                         x:Name="AppTitleText"
-                        Margin="0,0,6,0"
                         VerticalAlignment="Center"
                         FontTypography="Body"
-                        Text="optimizerDuck" />
-                    <ui:TextBlock
+                        Text="{x:Static helpers:Shared.AppName}" />
+                    <ui:Button
+                        x:Name="BackButton"
+                        Margin="12,0,6,0"
+                        Padding="12,2"
                         VerticalAlignment="Center"
-                        FontTypography="Body"
-                        Foreground="{DynamicResource TextFillColorDisabledBrush}"
-                        Text="{Binding Version, Mode=OneWay}" />
+                        Appearance="Primary"
+                        Click="OnBackButtonClick"
+                        Content="{extensions:Loc TitleBar.Back}"
+                        Cursor="Hand"
+                        Icon="{ui:SymbolIcon ArrowLeft24}"
+                        ToolTip="{extensions:Loc TitleBar.Back}"
+                        Visibility="Collapsed"
+                        shell:WindowChrome.IsHitTestVisibleInChrome="True" />
                 </StackPanel>
             </ui:TitleBar.Header>
 
@@ -138,18 +148,11 @@
                     VerticalAlignment="Center"
                     Orientation="Horizontal">
                     <ui:Button
-                        Margin="0,0,8,0"
                         Appearance="Transparent"
-                        Command="{Binding OpenSupportLinkCommand}"
+                        Command="{Binding OpenWebsiteCommand}"
                         Cursor="Hand"
-                        Icon="{ui:SymbolIcon Heart24}"
-                        ToolTip="{extensions:Loc TitleBar.Support}" />
-                    <ui:Button
-                        Appearance="Transparent"
-                        Command="{Binding OpenDiscordLinkCommand}"
-                        Cursor="Hand"
-                        Icon="{ui:SymbolIcon PeopleCommunity24}"
-                        ToolTip="{extensions:Loc TitleBar.Discord}" />
+                        Icon="{ui:SymbolIcon Globe24}"
+                        ToolTip="{extensions:Loc TitleBar.Website}" />
                 </StackPanel>
             </ui:TitleBar.TrailingContent>
         </ui:TitleBar>

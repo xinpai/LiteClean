@@ -186,58 +186,6 @@ public partial class DashboardViewModel : ViewModel
     }
 
     [RelayCommand]
-    private void OpenAction(string action)
-    {
-        try
-        {
-            switch (action)
-            {
-                case "Discord":
-                    Process.Start(
-                        new ProcessStartInfo
-                        {
-                            FileName = Shared.DiscordInviteURL,
-                            UseShellExecute = true,
-                        }
-                    );
-                    break;
-
-                case "GitHub":
-                    Process.Start(
-                        new ProcessStartInfo
-                        {
-                            FileName = Shared.GitHubRepoURL,
-                            UseShellExecute = true,
-                        }
-                    );
-                    break;
-
-                case "Support":
-                case "Contribute":
-                    Process.Start(
-                        new ProcessStartInfo
-                        {
-                            FileName = Shared.ContributeURL,
-                            UseShellExecute = true,
-                        }
-                    );
-                    break;
-            }
-        }
-        catch (Exception ex)
-        {
-            _snackbarService.Show(
-                Loc.Instance["Snackbar.OpenFailed.Title"],
-                Loc.Instance["Snackbar.OpenFailed.Message"],
-                ControlAppearance.Danger,
-                new SymbolIcon { Symbol = SymbolRegular.ErrorCircle24, Filled = true },
-                TimeSpan.FromSeconds(5)
-            );
-            _logger.LogError(ex, "Failed to open {Action} link", action);
-        }
-    }
-
-    [RelayCommand]
     private void Run(string action)
     {
         try

@@ -248,17 +248,48 @@ public partial class OptimizationCategoryViewModel : ViewModel
                 restorePointCreated
             );
             _logger.LogWarning("Apply failed: {Message}", applyResult.Message);
+
+            // Nothing here was retryable, so without this the user would only get a toast that
+            // fades away. When Windows refused the steps for lack of rights, they also need to
+            // know that running elevated is what makes them succeed.
+            if (OptimizationResultDialogViewModel.ContainsRightsRefusal(applyResult.FailedSteps))
+                await ShowFailureDetailsAsync(
+                    optimization,
+                    applyResult.FailedSteps,
+                    OptimizationOperation.Apply
+                );
+
             await FinalizeOperationAsync(optimization);
             return;
         }
 
-        // Nothing to do changes nothing: the card is marked for this session and the pending
-        // changes prompt stays untouched.
+        // A no-op apply changes nothing, so the item is only marked as already optimal and the
+        // pending changes prompt stays untouched.
         optimization.State.IsAlreadyOptimal =
             applyResult.Status == OptimizationSuccessResult.NothingToDo;
 
         if (applyResult.Status == OptimizationSuccessResult.NothingToDo)
         {
+            // The machine already matched, so nothing was written. Persist the mark anyway: the
+            // applied state is read back from disk just below, and without that file the toggle
+            // the user just flipped would spring back and the state would be lost on relaunch.
+            try
+            {
+                await _revertManager.SaveSatisfiedAsync(
+                    optimization.Id,
+                    optimization.OptimizationKey
+                );
+                optimization.State.IsApplied = true;
+            }
+            catch (Exception ex) when (ex is System.IO.IOException or UnauthorizedAccessException)
+            {
+                _logger.LogWarning(
+                    ex,
+                    "Could not persist the already-optimal mark for {Name}",
+                    optimization.OptimizationKey
+                );
+            }
+
             await FinalizeOperationAsync(optimization);
             OnPropertyChanged(nameof(HasAppliedOptimizations));
             ShowOperationOutcomeSnackbar(

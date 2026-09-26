@@ -173,6 +173,33 @@ public class OperationRunner(
         // every step was a skip. An irreversible step counts as modifying it.
         if (!changes.ModifiedSystem)
         {
+            // A failed step leaves the machine unchanged as well, so it lands in this branch too
+            // whenever another step was skipped (a protected hive the process may not write, next
+            // to a value that already matched). Reporting that as "already optimal" hides the
+            // failure and drops the item's mark, so the failure takes precedence.
+            if (failedSteps.Count > 0)
+            {
+                _logger.LogWarning(
+                    "Run {OptimizationKey} changed nothing and failed {Failed} of {Total} steps",
+                    request.Subject.Key,
+                    failedSteps.Count,
+                    changes.Changes.Count
+                );
+                return new OptimizationResult
+                {
+                    Status = OptimizationSuccessResult.Failed,
+                    Message =
+                        failedSteps.Count >= changes.Changes.Count
+                            ? Loc.Instance["Optimization.Apply.Error.Failed", request.DisplayName]
+                            : Loc.Instance[
+                                "Optimization.Apply.Error.FailedWithSteps",
+                                request.DisplayName,
+                                failedSteps.Count
+                            ],
+                    FailedSteps = failedSteps,
+                };
+            }
+
             if (changes.Changes.Count == 0)
                 _logger.LogWarning(
                     "Run {OptimizationKey} recorded no step at all; the provider may have returned without recording",

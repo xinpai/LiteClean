@@ -1,16 +1,23 @@
-# Disclaimer
+# Disclaimer / 免责声明
 
-**Last Updated:** April 5, 2026
+**Last Updated:** September 26, 2026
+
+> [!IMPORTANT]
+> **轻净 LiteClean 是 [optimizerDuck](https://github.com/itsfatduck/optimizerDuck) 的修改版本（fork）。**
+> 本程序依据 [GNU GPL v3.0](./LICENSE) 分发：原始作品 Copyright (C) 2025–2026
+> fatDuck (itsfatduck)，修改部分 Copyright (C) 2026 XP06。
+>
+> 本免责声明**不影响** GPL v3.0 授予你的任何权利，也不构成对 GPL v3.0 的修改。
 
 ## General Disclaimer
 
-optimizerDuck is an open-source Windows optimization tool provided **"as is"** and **"as available"**, without any warranties or guarantees of any kind, whether express or implied.
+轻净 LiteClean is an open-source Windows optimization tool provided **"as is"** and **"as available"**, without any warranties or guarantees of any kind, whether express or implied.
 
 ---
 
 ## ⚠️ Important Notice
 
-**Using optimizerDuck modifies your Windows system settings.** These changes may affect system behavior, stability, and compatibility. By using this tool, you acknowledge and accept the following:
+**Using 轻净 LiteClean modifies your Windows system settings.** These changes may affect system behavior, stability, and compatibility. By using this tool, you acknowledge and accept the following:
 
 ### 1. No Warranty
 
@@ -36,6 +43,9 @@ To the maximum extent permitted by applicable law, the authors, contributors, ma
 - 💥 **Security vulnerabilities** introduced by optimizations
 - 💥 **Direct, indirect, incidental, or consequential damages**
 
+> This limitation of liability is consistent with, and does not extend beyond, the
+> disclaimer of warranty provided in sections 15–17 of the GNU GPL v3.0.
+
 ### 3. User Responsibility
 
 **You are solely responsible for:**
@@ -53,7 +63,7 @@ The optimizations and recommendations provided are based on general practices an
 
 ### 5. Windows Version Compatibility
 
-optimizerDuck is designed for **Windows 10 and later**. Behavior may vary depending on:
+轻净 LiteClean is designed for **Windows 10 and later**. Behavior may vary depending on:
 
 - Windows version and edition
 - System configuration
@@ -63,7 +73,7 @@ Compatibility is **not guaranteed** across all environments.
 
 ### 6. Third-Party References
 
-optimizerDuck may reference or be inspired by community research, third-party tools, or publicly available documentation.
+轻净 LiteClean may reference or be inspired by community research, third-party tools, or publicly available documentation.
 
 We are **not affiliated with or endorsed by** Microsoft or any third-party entities. All trademarks belong to their respective owners.
 
@@ -73,7 +83,7 @@ You agree to use the Application in compliance with all applicable laws and regu
 
 ### 8. Use at Your Own Risk
 
-**This is the bottom line:** optimizerDuck modifies system-level settings. While we make reasonable efforts to ensure safety, **you use this tool entirely at your own risk**.
+**This is the bottom line:** 轻净 LiteClean modifies system-level settings. While we make reasonable efforts to ensure safety, **you use this tool entirely at your own risk**.
 
 If you are not comfortable modifying system settings, **do not use this Application**.
 
@@ -81,6 +91,20 @@ If you are not comfortable modifying system settings, **do not use this Applicat
 
 ## Acknowledgment
 
-By downloading, installing, or using optimizerDuck, you acknowledge that you have read and understood this Disclaimer and agree to its terms.
+By downloading, installing, or using 轻净 LiteClean, you acknowledge that you have read and understood this Disclaimer and agree to its terms.
 
 If you do not agree, do not use the Application.
+
+---
+
+## 中文摘要
+
+轻净 LiteClean 会修改 Windows 系统设置，可能影响系统行为、稳定性与兼容性。
+
+- 本程序按"现状"提供，**不附带任何明示或默示担保**。
+- 作者、贡献者与版权持有人**不对**因使用本程序而产生的任何系统故障、数据丢失、
+  硬件问题或其它损失承担责任。
+- 使用前请**创建系统还原点**并**备份重要数据**，并确认你理解每一项优化的作用。
+- 本程序与 Microsoft 无任何关联，也未获得其认可。
+
+**使用本程序的风险由你自己承担。**

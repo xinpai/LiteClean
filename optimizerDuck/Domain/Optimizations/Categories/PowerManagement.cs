@@ -256,7 +256,7 @@ public class PowerManagement : LocalizedObject, IOptimizationCategory
     )]
     public class InstallOptimizerDuckPowerPlan : BaseOptimization
     {
-        private static readonly Guid OptimizerDuckPlanId = Guid.Parse(Shared.PowerPlanGUID);
+        private static readonly Guid LiteCleanPlanId = Guid.Parse(Shared.PowerPlanGUID);
 
         public override async Task<ApplyResult> ApplyAsync(
             IProgress<ProcessingProgress> progress,
@@ -266,11 +266,11 @@ public class PowerManagement : LocalizedObject, IOptimizationCategory
             var powerPlanPath = Path.Combine(
                 Shared.AssetsDirectory,
                 "PowerPlans",
-                "optimizerDuck.pow"
+                "LiteClean.pow"
             );
             if (
                 !EmbeddedResourceHelper.TryExtract(
-                    "PowerPlans.optimizerDuck.pow",
+                    "PowerPlans.LiteClean.pow",
                     powerPlanPath,
                     true
                 )
@@ -278,7 +278,7 @@ public class PowerManagement : LocalizedObject, IOptimizationCategory
             {
                 context.Logger.LogError("Failed to extract embedded power plan");
                 return ApplyResult.False(
-                    "Failed to extract optimizerDuck power plan from resources."
+                    "Failed to extract LiteClean power plan from resources."
                 );
             }
 
@@ -296,7 +296,7 @@ public class PowerManagement : LocalizedObject, IOptimizationCategory
                 context,
                 context.PowerPlans,
                 powerPlanPath,
-                OptimizerDuckPlanId,
+                LiteCleanPlanId,
                 context.CancellationToken
             );
             var installResult = install.Result;
@@ -305,7 +305,7 @@ public class PowerManagement : LocalizedObject, IOptimizationCategory
             if (!installResult.Ok)
             {
                 context.Logger.LogError(
-                    "Failed to install optimizerDuck power plan: {Error}",
+                    "Failed to install LiteClean power plan: {Error}",
                     installResult.Error ?? "unknown"
                 );
                 if (previousId is null)
@@ -319,7 +319,7 @@ public class PowerManagement : LocalizedObject, IOptimizationCategory
                 );
             }
 
-            context.Logger.LogInformation("Installed optimizerDuck power plan successfully!");
+            context.Logger.LogInformation("Installed LiteClean power plan successfully!");
             return context.Changes.ToApplyResult();
         }
     }

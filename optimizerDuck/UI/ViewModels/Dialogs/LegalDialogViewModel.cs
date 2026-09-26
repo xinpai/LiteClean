@@ -103,8 +103,7 @@ public partial class LegalDialogViewModel(
             var url = type switch
             {
                 "GitHub" => Shared.GitHubRepoURL,
-                "Documentation" or "Docs" => Shared.WebsiteURL + "docs/guides/getting-started",
-                "Discord" => Shared.DiscordInviteURL,
+                "Documentation" or "Docs" => Shared.DocumentationURL,
                 "Acknowledgements" => Shared.AcknowledgementsURL,
                 _ => null,
             };

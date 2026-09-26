@@ -8,39 +8,32 @@ namespace optimizerDuck.Common.Helpers;
 /// </summary>
 public static class Shared
 {
+    /// <summary>The product name shown throughout the UI.</summary>
+    public const string AppName = "轻净 LiteClean";
+
+    /// <summary>The official website, opened from the title bar.</summary>
+    public const string OfficialWebsiteURL = "https://www.xp06.com/";
+
     /// <summary>The ASCII-art logo shown in the startup log banner.</summary>
     public const string RawLogo = """
-                      _   _           _              _____             _
-                     | | (_)         (_)            |  __ \           | |
-           ___  _ __ | |_ _ _ __ ___  _ _______ _ __| |  | |_   _  ___| | __
-          / _ \| '_ \| __| | '_ ` _ \| |_  / _ \ '__| |  | | | | |/ __| |/ /
-         | (_) | |_) | |_| | | | | | | |/ /  __/ |  | |__| | |_| | (__|   <
-          \___/| .__/ \__|_|_| |_| |_|_/___\___|_|  |_____/ \__,_|\___|_|\_\
-               | |
-               |_|
-        """;
-
-    /// <summary>The invite link to the project's Discord server.</summary>
-    public const string DiscordInviteURL = "https://discord.gg/tDUBDCYw9Q";
-
-    /// <summary>The project documentation site.</summary>
-    public const string WebsiteURL = "https://optimizerduck.vercel.app/";
+              _     _ _        ____ _
+             | |   (_) |_ ___ / ___| | ___  __ _ _ __
+             | |   | | __/ _ \ |   | |/ _ \/ _` | '_ \
+             | |___| | ||  __/ |___| |  __/ (_| | | | |
+             |_____|_|\__\___|\____|_|\___|\__,_|_| |_|
+       """;
 
     /// <summary>The project's GitHub repository.</summary>
-    public const string GitHubRepoURL = "https://github.com/itsfatduck/optimizerDuck";
+    public const string GitHubRepoURL = "https://github.com/xinpai/LiteClean";
 
-    /// <summary>The community page on the documentation site.</summary>
-    public const string CommunityURL = "https://optimizerduck.vercel.app/docs/community";
-
-    /// <summary>The contribution guide on the documentation site.</summary>
-    public const string ContributeURL = "https://optimizerduck.vercel.app/docs/contribute/overview";
+    /// <summary>The project documentation, which lives in the repository README.</summary>
+    public const string DocumentationURL = $"{GitHubRepoURL}/blob/master/README.md";
 
     /// <summary>The third-party notices file on GitHub.</summary>
-    public const string AcknowledgementsURL =
-        "https://github.com/itsfatduck/optimizerDuck/blob/master/THIRD-PARTY-NOTICES.md";
+    public const string AcknowledgementsURL = $"{GitHubRepoURL}/blob/master/THIRD-PARTY-NOTICES.md";
 
     /// <summary>The name given to the restore point created before an apply.</summary>
-    public const string RestorePointName = "optimizerDuck Restore Point";
+    public const string RestorePointName = "LiteClean Restore Point";
 
     /// <summary>The GUID the bundled power plan is installed under.</summary>
     public const string PowerPlanGUID = "8ae61178-2c55-43f2-afb2-f83725823657";
@@ -254,8 +247,66 @@ public static class Shared
     public static string RootDirectory =>
         Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "optimizerDuck"
+            "LiteClean"
         );
+
+    /// <summary>The data directory name used by builds that predate the rename.</summary>
+    private const string LegacyRootDirectoryName = "optimizerDuck";
+
+    /// <summary>
+    ///     Carries a data directory left behind by a build that predates the rename over to the
+    ///     current name, so settings, revert files and history survive it.
+    /// </summary>
+    public static void MigrateLegacyRootDirectory()
+    {
+        var legacyRoot = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            LegacyRootDirectoryName
+        );
+
+        MigrateRootDirectory(legacyRoot, RootDirectory);
+    }
+
+    /// <summary>Copies everything the target lacks, then drops the source directory.</summary>
+    /// <param name="legacyRoot">The directory the older build used.</param>
+    /// <param name="currentRoot">The directory the current build uses.</param>
+    internal static void MigrateRootDirectory(string legacyRoot, string currentRoot)
+    {
+        if (
+            string.Equals(legacyRoot, currentRoot, StringComparison.OrdinalIgnoreCase)
+            || !Directory.Exists(legacyRoot)
+        )
+            return;
+
+        try
+        {
+            CopyMissingEntries(legacyRoot, currentRoot);
+            Directory.Delete(legacyRoot, true);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            // A data migration must never block startup. Whatever could not be copied or removed
+            // stays where it was, and the application keeps using the current directory.
+        }
+    }
+
+    /// <summary>Copies files and sub-directories that <paramref name="target" /> does not have yet.</summary>
+    /// <param name="source">The directory to read from.</param>
+    /// <param name="target">The directory to write to.</param>
+    private static void CopyMissingEntries(string source, string target)
+    {
+        Directory.CreateDirectory(target);
+
+        foreach (var directory in Directory.EnumerateDirectories(source))
+            CopyMissingEntries(directory, Path.Combine(target, Path.GetFileName(directory)));
+
+        foreach (var file in Directory.EnumerateFiles(source))
+        {
+            var destination = Path.Combine(target, Path.GetFileName(file));
+            if (!File.Exists(destination))
+                File.Copy(file, destination);
+        }
+    }
 
     /// <summary>The directory that holds downloaded and bundled resources.</summary>
     public static string ResourcesDirectory => Path.Combine(RootDirectory, "Resources");

@@ -50,7 +50,6 @@ public partial class SettingsViewModel(
 
     [ObservableProperty]
     private bool _smoothScrolling;
-    public string Version { get; } = Shared.FileVersion;
 
     public ObservableCollection<LanguageOption> Languages { get; } = new(SupportedLanguages.All);
 
@@ -170,74 +169,6 @@ public partial class SettingsViewModel(
             await OptimizationService.UpdateOptimizationStateAsync(
                 optimizationRegistry.OptimizationCategories.SelectMany(c => c.Optimizations)
             );
-        }
-    }
-
-    [RelayCommand]
-    private void OpenWebsite(string type)
-    {
-        try
-        {
-            switch (type)
-            {
-                case "Documentation":
-                    logger.LogInformation(
-                        "Opening page: {Url}",
-                        Shared.WebsiteURL + "docs/guides/getting-started"
-                    );
-                    Process.Start(
-                        new ProcessStartInfo
-                        {
-                            FileName = Shared.WebsiteURL + "docs/guides/getting-started",
-                            UseShellExecute = true,
-                        }
-                    );
-                    break;
-
-                case "GitHub":
-                    logger.LogInformation("Opening page: {Url}", Shared.GitHubRepoURL);
-                    Process.Start(
-                        new ProcessStartInfo
-                        {
-                            FileName = Shared.GitHubRepoURL,
-                            UseShellExecute = true,
-                        }
-                    );
-                    break;
-
-                case "Acknowledgements":
-                    logger.LogInformation("Opening page: {Url}", Shared.AcknowledgementsURL);
-                    Process.Start(
-                        new ProcessStartInfo
-                        {
-                            FileName = Shared.AcknowledgementsURL,
-                            UseShellExecute = true,
-                        }
-                    );
-                    break;
-
-                case "Help":
-                    logger.LogInformation("Opening page: {Url}", Shared.CommunityURL);
-                    Process.Start(
-                        new ProcessStartInfo
-                        {
-                            FileName = Shared.CommunityURL,
-                            UseShellExecute = true,
-                        }
-                    );
-                    break;
-            }
-        }
-        catch (Exception ex)
-        {
-            snackbarService.Show(
-                Loc.Instance["Snackbar.OpenLinkFailed.Title"],
-                Loc.Instance["Snackbar.OpenLinkFailed.Message"],
-                ControlAppearance.Danger,
-                new SymbolIcon { Symbol = SymbolRegular.ErrorCircle24, Filled = true },
-                TimeSpan.FromSeconds(5)
-            );
-            logger.LogWarning(ex, "Failed to open page");
         }
     }
 

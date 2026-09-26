@@ -17,10 +17,10 @@
     Style="{StaticResource PageRootStyle}"
     mc:Ignorable="d">
 
-    <Grid RowDefinitions="Auto,Auto,*">
+    <Grid RowDefinitions="Auto,*">
         <!--  Loading Overlay  -->
         <controls:LoadingStateOverlay
-            Grid.RowSpan="3"
+            Grid.RowSpan="2"
             Panel.ZIndex="1000"
             DimBackground="True"
             IsLoading="{Binding ViewModel.IsLoading}"
@@ -60,79 +60,8 @@
             </Grid>
         </StackPanel>
 
-        <!--  Action Cards  -->
-        <UniformGrid
-            Grid.Row="1"
-            Margin="0,0,0,24"
-            Columns="3">
-            <ui:CardAction
-                Margin="0,0,12,0"
-                Padding="16,14"
-                VerticalAlignment="Stretch"
-                Command="{Binding ViewModel.OpenActionCommand}"
-                CommandParameter="Discord"
-                Cursor="Hand">
-                <ui:CardAction.Icon>
-                    <ui:ImageIcon Height="25" Source="pack://application:,,,/Resources/Images/DiscordLogo.png" />
-                </ui:CardAction.Icon>
-                <StackPanel>
-                    <ui:TextBlock FontTypography="BodyStrong" Text="{ext:Loc Dashboard.Actions.Discord.Title}" />
-                    <ui:TextBlock
-                        FontTypography="Caption"
-                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="{ext:Loc Dashboard.Actions.Discord.Description}"
-                        TextWrapping="Wrap" />
-                </StackPanel>
-            </ui:CardAction>
-
-            <ui:CardAction
-                Margin="0,0,12,0"
-                Padding="16,14"
-                VerticalAlignment="Stretch"
-                Command="{Binding ViewModel.OpenActionCommand}"
-                CommandParameter="GitHub"
-                Cursor="Hand">
-                <ui:CardAction.Icon>
-                    <ui:ImageIcon Height="40" Source="{Binding ViewModel.CurrentApplicationTheme, Converter={StaticResource ThemeToGitHubIconConverter}}" />
-                </ui:CardAction.Icon>
-                <StackPanel>
-                    <ui:TextBlock FontTypography="BodyStrong" Text="{ext:Loc Dashboard.Actions.GitHub.Title}" />
-                    <ui:TextBlock
-                        FontTypography="Caption"
-                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="{ext:Loc Dashboard.Actions.GitHub.Description}"
-                        TextWrapping="Wrap" />
-                </StackPanel>
-            </ui:CardAction>
-
-            <ui:CardAction
-                Margin="0"
-                Padding="16,14"
-                VerticalAlignment="Stretch"
-                BorderThickness="1"
-                Command="{Binding ViewModel.OpenActionCommand}"
-                CommandParameter="Contribute"
-                Cursor="Hand">
-                <ui:CardAction.Icon>
-                    <ui:SymbolIcon
-                        Filled="True"
-                        Foreground="{DynamicResource SystemFillColorCautionBrush}"
-                        Symbol="Star24" />
-                </ui:CardAction.Icon>
-
-                <StackPanel>
-                    <ui:TextBlock FontTypography="BodyStrong" Text="{ext:Loc Dashboard.Actions.SupportMe.Title}" />
-                    <ui:TextBlock
-                        FontTypography="Caption"
-                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="{ext:Loc Dashboard.Actions.SupportMe.Description}"
-                        TextWrapping="Wrap" />
-                </StackPanel>
-            </ui:CardAction>
-        </UniformGrid>
-
         <ScrollViewer
-            Grid.Row="2"
+            Grid.Row="1"
             Padding="0"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto">

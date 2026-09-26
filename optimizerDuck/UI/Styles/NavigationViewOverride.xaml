@@ -933,9 +933,14 @@
         </Grid>
 
         <ControlTemplate.Triggers>
+            <!--  Keep the expanded pane comfortably wide so the menu labels breathe  -->
+            <Trigger Property="IsPaneOpen" Value="True">
+                <Setter TargetName="PaneGrid" Property="MinWidth" Value="220" />
+            </Trigger>
             <Trigger Property="IsPaneOpen" Value="False">
                 <Setter TargetName="PART_AutoSuggestBoxSymbolButton" Property="Visibility" Value="Visible" />
                 <Setter TargetName="PART_ToggleButton" Property="Content" Value="{x:Null}" />
+                <Setter TargetName="PaneGrid" Property="MinWidth" Value="40" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>

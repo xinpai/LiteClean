@@ -51,16 +51,15 @@ decisions when appropriate.
 ## Scope
 
 This Code of Conduct applies within all community spaces, including the
-GitHub repository, issue tracker, discussions, and the project Discord server.
-It also applies when an individual is officially representing the community
-in public spaces.
+GitHub repository, issue tracker and discussions. It also applies when an
+individual is officially representing the community in public spaces.
 
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement via:
-- **Email:** itsfatduck@gmail.com
-- **Discord**: contact via project server (link in README)
+- **Email:** 164467616@qq.com
+- **GitHub**: open a private report via the repository's Security tab
 
 All complaints will be reviewed and investigated promptly and fairly.
 

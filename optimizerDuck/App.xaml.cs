@@ -149,30 +149,30 @@ public partial class App : Application
     }
 
     /// <summary>
-    ///     Applies the duck-yellow accent palette tuned for the given theme. Light
-    ///     uses deeper honey tones so accent text and fills stay readable on white;
-    ///     dark keeps the brighter golden tones. Centralized so startup and theme
-    ///     switches always use the same palettes.
+    ///     Applies the LiteClean blue accent palette tuned for the given theme. Light
+    ///     uses a deeper blue so accent text and fills stay readable on white; dark
+    ///     keeps the brighter blue tones. Centralized so startup and theme switches
+    ///     always use the same palettes.
     /// </summary>
     internal static void ApplyAccentFor(ApplicationTheme theme)
     {
         if (theme == ApplicationTheme.Dark)
         {
             ApplicationAccentColorManager.Apply(
-                systemAccent: Color.FromRgb(216, 155, 29),
-                primaryAccent: Color.FromRgb(235, 193, 94),
-                secondaryAccent: Color.FromRgb(255, 247, 200),
-                tertiaryAccent: Color.FromRgb(255, 243, 131)
+                systemAccent: Color.FromRgb(0, 120, 212),
+                primaryAccent: Color.FromRgb(0, 120, 212),
+                secondaryAccent: Color.FromRgb(16, 137, 236),
+                tertiaryAccent: Color.FromRgb(41, 153, 245)
             );
             RefreshToggleSwitchBrushes();
             return;
         }
 
         ApplicationAccentColorManager.Apply(
-            systemAccent: Color.FromRgb(138, 94, 0),
-            primaryAccent: Color.FromRgb(138, 94, 0),
-            secondaryAccent: Color.FromRgb(122, 88, 0),
-            tertiaryAccent: Color.FromRgb(110, 75, 0)
+            systemAccent: Color.FromRgb(0, 95, 184),
+            primaryAccent: Color.FromRgb(0, 95, 184),
+            secondaryAccent: Color.FromRgb(0, 80, 158),
+            tertiaryAccent: Color.FromRgb(0, 66, 132)
         );
         RefreshToggleSwitchBrushes();
     }
@@ -186,9 +186,9 @@ public partial class App : Application
         Color GetColor(string key, Color fallback) =>
             app.Resources[key] is Color color ? color : fallback;
 
-        var primary = GetColor("SystemAccentColorPrimary", Color.FromRgb(235, 193, 94));
-        var secondary = GetColor("AccentFillColorSecondary", Color.FromRgb(255, 247, 200));
-        var tertiary = GetColor("AccentFillColorTertiary", Color.FromRgb(255, 243, 131));
+        var primary = GetColor("SystemAccentColorPrimary", Color.FromRgb(0, 120, 212));
+        var secondary = GetColor("AccentFillColorSecondary", Color.FromRgb(16, 137, 236));
+        var tertiary = GetColor("AccentFillColorTertiary", Color.FromRgb(41, 153, 245));
         var knobOn = GetColor("TextOnAccentFillColorPrimary", Colors.White);
 
         app.Resources["ToggleSwitchFillOn"] = new SolidColorBrush(primary);
@@ -235,8 +235,8 @@ public partial class App : Application
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
             System.Windows.MessageBox.Show(
-                $"Failed to start optimizerDuck.{Environment.NewLine}{Environment.NewLine}{ex.Message}",
-                "optimizerDuck",
+                $"Failed to start {Shared.AppName}.{Environment.NewLine}{Environment.NewLine}{ex.Message}",
+                Shared.AppName,
                 System.Windows.MessageBoxButton.OK,
                 MessageBoxImage.Error
             );
@@ -314,6 +314,8 @@ public partial class App : Application
 
     private async Task OnStartupAsync(StartupEventArgs e)
     {
+        Shared.MigrateLegacyRootDirectory();
+
         Directory.CreateDirectory(Shared.RootDirectory);
         Directory.CreateDirectory(Shared.ResourcesDirectory);
         Directory.CreateDirectory(Shared.DownloadsDirectory);
@@ -321,7 +323,7 @@ public partial class App : Application
         Directory.CreateDirectory(Shared.RevertDirectory);
         Directory.CreateDirectory(Shared.HistoryDirectory);
 
-        var logPath = Path.Combine(Shared.RootDirectory, "optimizerDuck.log");
+        var logPath = Path.Combine(Shared.RootDirectory, "LiteClean.log");
         Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)

@@ -13,15 +13,21 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
-        <Authors>fatDuck</Authors>
-        <ApplicationIcon>Logo.ico</ApplicationIcon>
-        <Company>fatDuck</Company>
+        <Authors>XP06</Authors>
+        <ApplicationIcon>LiteClean.ico</ApplicationIcon>
+        <Company>XP06</Company>
         <FileVersion>2.28.0</FileVersion>
         <Version>2.28.0</Version>
-        <Product>optimizerDuck</Product>
-        <Copyright>Copyright fatDuck 2026</Copyright>
-        <AssemblyTitle>optimizerDuck</AssemblyTitle>
+        <Product>轻净 LiteClean</Product>
+        <Copyright>Copyright (C) 2026 XP06; based on optimizerDuck, Copyright (C) 2025-2026 fatDuck (GPL-3.0)</Copyright>
+        <AssemblyTitle>轻净 LiteClean</AssemblyTitle>
         <AssemblyDescription>Free, open-source Windows optimization tool for performance, privacy, and simplicity.</AssemblyDescription>
+        <!-- The build ships as LiteClean.exe, but the root namespace stays optimizerDuck: the C#
+             namespaces, the XAML clr-namespace mappings, the embedded resource names
+             (optimizerDuck.Resources.*) and the ResX resource base names all derive from it.
+             AssemblyName renames only the assembly and the published single-file executable. -->
+        <AssemblyName>LiteClean</AssemblyName>
+        <RootNamespace>optimizerDuck</RootNamespace>
         <NeutralLanguage>en-US</NeutralLanguage>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <!-- The gate: a warning fails the build, and the promoted style rules run inside it. -->
@@ -78,11 +84,12 @@
 
     <ItemGroup>
         <EmbeddedResource Include="Resources\Embedded\Icons\blank.ico" />
-        <EmbeddedResource Include="Resources\Embedded\PowerPlans\optimizerDuck.pow" />
+        <EmbeddedResource Include="Resources\Embedded\PowerPlans\LiteClean.pow" />
     </ItemGroup>
 
     <ItemGroup>
         <Resource Include="Resources\Images\Duck.png" />
+        <Resource Include="Resources\Images\LiteClean.png" />
         <Resource Include="Resources\Images\GitHubLogoBlack.png" />
         <Resource Include="Resources\Images\GitHubLogoWhite.png" />
         <Resource Include="Resources\Images\DiscordLogo.png" />

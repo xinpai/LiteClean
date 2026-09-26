@@ -9,38 +9,19 @@ namespace optimizerDuck.UI.ViewModels.Windows;
 public partial class MainWindowViewModel : LocalizedObject
 {
     /// <summary>
-    ///     Gets the application version displayed in the title bar.
-    /// </summary>
-    public string Version => $"[v{Shared.FileVersion}]";
-
-    /// <summary>
-    ///     Opens the support/donation link in the default browser.
+    ///     Opens the official website in the default browser.
     /// </summary>
     [RelayCommand]
-    private static void OpenSupportLink()
+    private static void OpenWebsite()
     {
         try
         {
             Process.Start(
-                new ProcessStartInfo { FileName = Shared.ContributeURL, UseShellExecute = true }
-            );
-        }
-        catch
-        {
-            // Silently fail: opening a link is non-critical.
-        }
-    }
-
-    /// <summary>
-    ///     Opens the Discord invite link in the default browser.
-    /// </summary>
-    [RelayCommand]
-    private static void OpenDiscordLink()
-    {
-        try
-        {
-            Process.Start(
-                new ProcessStartInfo { FileName = Shared.DiscordInviteURL, UseShellExecute = true }
+                new ProcessStartInfo
+                {
+                    FileName = Shared.OfficialWebsiteURL,
+                    UseShellExecute = true,
+                }
             );
         }
         catch

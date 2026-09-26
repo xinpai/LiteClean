@@ -129,6 +129,50 @@ public class RevertManager(
         }
     }
 
+    /// <summary>
+    ///     Marks an optimization as handled after an apply that changed nothing because the machine
+    ///     already matched it. The file carries no steps on purpose: there is nothing to undo, but
+    ///     its presence is what keeps the item's applied mark and its toggle once the run is over
+    ///     and across restarts.
+    /// </summary>
+    /// <param name="id">The optimization the no-op apply belongs to.</param>
+    /// <param name="name">The optimization name, kept for diagnostics.</param>
+    public async Task SaveSatisfiedAsync(Guid id, string name)
+    {
+        var filePath = GetFilePath(id);
+        var lockObj = await AcquireFileLockAsync(id).ConfigureAwait(false);
+        try
+        {
+            var data =
+                await LoadForWriteAsync(filePath).ConfigureAwait(false)
+                ?? new RevertData
+                {
+                    SchemaVersion = SchemaVersion,
+                    OptimizationId = id,
+                    OptimizationName = name,
+                    Steps = Array.Empty<RevertStepData?>(),
+                };
+
+            if (data.Steps.Any(s => s != null))
+            {
+                // Real revert data is already on disk; a no-op apply must never replace it.
+                return;
+            }
+
+            data.SchemaVersion = SchemaVersion;
+            data.OptimizationName = name;
+            data.AppliedAt = _time.GetLocalNow().DateTime;
+
+            await WriteJsonAtomicAsync(filePath, data, CancellationToken.None)
+                .ConfigureAwait(false);
+            _logger.LogInformation("Marked {Name} as already optimal in {Path}", name, filePath);
+        }
+        finally
+        {
+            lockObj.Release();
+        }
+    }
+
     /// <summary>Reverts the optimization using its persisted revert steps.</summary>
     public async Task<RevertResult> RevertAsync(
         IOptimization optimization,
@@ -140,6 +184,24 @@ public class RevertManager(
         if (steps.Count == 0)
         {
             var path = GetFilePath(optimization.Id);
+
+            // A file that parses and simply holds no step is the marker of an apply that found the
+            // machine already matching. Dropping it is the whole revert; reporting it as unreadable
+            // would leave the user unable to switch the item back off. A file that does not parse
+            // is not that marker and keeps its "unreadable data" report.
+            var marker = await LoadAsync(path).ConfigureAwait(false);
+            if (marker is { Steps.Length: 0 })
+            {
+                RemoveRevertData(optimization.Id, optimization.OptimizationKey);
+                return new RevertResult
+                {
+                    Success = true,
+                    Message = Loc.Instance["Optimization.Revert.Success", optimization.Name],
+                };
+            }
+
+            // Anything else left on disk cannot be read back, and a parked copy counts as data
+            // too, because it is the last copy of what the item held.
             var unreadable = File.Exists(path) ? path : FindParkedFile(path);
             if (unreadable is not null)
                 return new RevertResult

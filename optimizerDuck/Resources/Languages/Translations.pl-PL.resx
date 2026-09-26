@@ -214,10 +214,10 @@
     <value>Nie udało się wykryć aktualnie aktywnego planu zasilania.</value>
   </data>
   <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.Error.ImportFailed" xml:space="preserve">
-    <value>Nie udało się zaimportować planu zasilania optimizerDuck.</value>
+    <value>Nie udało się zaimportować planu zasilania LiteClean.</value>
   </data>
   <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.Error.ActivateFailed" xml:space="preserve">
-    <value>Nie udało się aktywować planu zasilania optimizerDuck.</value>
+    <value>Nie udało się aktywować planu zasilania LiteClean.</value>
   </data>
   <data name="Optimizer.UI.Tags.System" xml:space="preserve">
     <value>System</value>
@@ -325,6 +325,9 @@
   <data name="OptimizationResultDialog.Description" xml:space="preserve">
     <value>Niektóre kroki nie zostały ukończone pomyślnie. Możesz ponowić tylko nieudane kroki.</value>
   </data>
+  <data name="OptimizationResultDialog.Hint.RequiresAdministrator" xml:space="preserve">
+    <value>Niektóre kroki zostały odrzucone, ponieważ wymagają uprawnień administratora. Uruchom LiteClean jako administrator i spróbuj ponownie.</value>
+  </data>
   <data name="OptimizationResultDialog.Details" xml:space="preserve">
     <value>Szczegóły</value>
   </data>
@@ -375,6 +378,9 @@
   </data>
   <data name="Settings.About.Header" xml:space="preserve">
     <value>O programie</value>
+  </data>
+  <data name="Settings.About.BasedOn" xml:space="preserve">
+    <value>Ten projekt jest oparty na optimizerDuck.</value>
   </data>
   <data name="Dialog.AreYouSure.Title" xml:space="preserve">
     <value>Czy na pewno chcesz kontynuować?</value>
@@ -895,7 +901,7 @@
     <value>Podziękowania</value>
   </data>
   <data name="Settings.About.Acknowledgements.Description" xml:space="preserve">
-    <value>optimizerDuck jest możliwy dzięki następującemu oprogramowaniu open-source i zasobom.</value>
+    <value>LiteClean jest możliwy dzięki następującemu oprogramowaniu open-source i zasobom.</value>
   </data>
   <data name="RestorePoint.Title" xml:space="preserve">
     <value>Przywracanie systemu</value>
@@ -905,11 +911,14 @@
 To środek bezpieczeństwa chroniący system Windows przed zastosowaniem zmian.</value>
   </data>
   <data name="RestorePointDialog.Help" xml:space="preserve">
-    <value>Aplikacja automatycznie włączy Przywracanie systemu i utworzy punkt kontrolny o nazwie „optimizerDuck...”.
+    <value>Aplikacja automatycznie włączy Przywracanie systemu i utworzy punkt kontrolny o nazwie „LiteClean...”.
 Dzięki temu zawsze możesz się cofnąć, jeśli coś pójdzie nie tak.</value>
   </data>
   <data name="RestorePoint.Snackbar.Error.Title" xml:space="preserve">
     <value>Nie można utworzyć ani włączyć Przywracania systemu.</value>
+  </data>
+  <data name="RestorePoint.Hint.RequiresAdministrator" xml:space="preserve">
+    <value>Utworzenie punktu przywracania wymaga uprawnień administratora. Uruchom LiteClean jako administrator i spróbuj ponownie.</value>
   </data>
   <data name="RestorePoint.Snackbar.Error.Message" xml:space="preserve">
     <value>Wystąpił błąd podczas tworzenia lub włączania Przywracania systemu. Spróbuj utworzyć je ręcznie.</value>
@@ -963,7 +972,7 @@ Dzięki temu zawsze możesz się cofnąć, jeśli coś pójdzie nie tak.</value>
     <value>Nie znaleziono zbędnych aplikacji ¯\_(ツ)_/¯</value>
   </data>
   <data name="Bloatware.Empty.Description" xml:space="preserve">
-    <value>optimizerDuck nie znalazł żadnych usuwalnych pakietów AppX. Pusto jak w próżni...</value>
+    <value>LiteClean nie znalazł żadnych usuwalnych pakietów AppX. Pusto jak w próżni...</value>
   </data>
   <data name="Bloatware.Loading" xml:space="preserve">
     <value>Wyszukiwanie usuwalnych aplikacji...</value>
@@ -993,7 +1002,7 @@ Dzięki temu zawsze możesz się cofnąć, jeśli coś pójdzie nie tak.</value>
     <value>Podczas usuwania zainstalowanych pakietów AppX usuwaj również odpowiadające im pakiety provisioned, aby zapobiec automatycznej ponownej instalacji dla nowych użytkowników.</value>
   </data>
   <data name="Dashboard.UpdateInfoBar.Message" xml:space="preserve">
-    <value>Dostępny jest optimizerDuck (v{0})!
+    <value>Dostępny jest LiteClean (v{0})!
 Zaktualizuj teraz, aby korzystać z najnowszych funkcji, ulepszeń i poprawek błędów.</value>
   </data>
   <data name="Common.Search.Placeholder" xml:space="preserve">
@@ -1533,7 +1542,7 @@ Zaktualizuj teraz, aby korzystać z najnowszych funkcji, ulepszeń i poprawek b�
     <value>Umowa prawna</value>
   </data>
   <data name="LegalDialog.Intro.Title" xml:space="preserve">
-    <value>Witamy w optimizerDuck!</value>
+    <value>Witamy w LiteClean!</value>
   </data>
   <data name="LegalDialog.Intro.Description" xml:space="preserve">
     <value>Wybierz język i motyw, poświęć chwilę na zapoznanie się z Warunkami korzystania, Polityką prywatności i Zastrzeżeniem, a następnie możesz zaczynać.</value>
@@ -1616,11 +1625,11 @@ Zaktualizuj teraz, aby korzystać z najnowszych funkcji, ulepszeń i poprawek b�
   <data name="Settings.About.Documentation.Description" xml:space="preserve">
     <value>Zobacz dokumentację, przewodniki i najczęściej zadawane pytania.</value>
   </data>
-  <data name="TitleBar.Support" xml:space="preserve">
-    <value>Wesprzyj projekt</value>
+  <data name="TitleBar.Website" xml:space="preserve">
+    <value>Odwiedź stronę</value>
   </data>
-  <data name="TitleBar.Discord" xml:space="preserve">
-    <value>Dołącz do społeczności Discord</value>
+  <data name="TitleBar.Back" xml:space="preserve">
+    <value>Wstecz</value>
   </data>
   <data name="Optimizer.UI.Tags.Windows10Only" xml:space="preserve">
     <value>Tylko Windows 10</value>
@@ -1785,7 +1794,7 @@ Zaktualizuj teraz, aby korzystać z najnowszych funkcji, ulepszeń i poprawek b�
     <value>Sprawdzenie zgodności nie powiodło się</value>
   </data>
   <data name="Condition.Error.Description" xml:space="preserve">
-    <value>optimizerDuck nie mógł ustalić, czy ten element jest obsługiwany w Twoim systemie.</value>
+    <value>LiteClean nie mógł ustalić, czy ten element jest obsługiwany w Twoim systemie.</value>
   </data>
   <data name="Condition.Windows11.Title" xml:space="preserve">
     <value>Wymagany system Windows 11</value>
@@ -1992,7 +2001,7 @@ Zaktualizuj teraz, aby korzystać z najnowszych funkcji, ulepszeń i poprawek b�
     <value>Nie można przywrócić poprzedniego planu zasilania: {0}.</value>
   </data>
   <data name="Revert.PowerPlan.Error.DeleteFailed" xml:space="preserve">
-    <value>Nie można usunąć planu zasilania optimizerDuck: {0}</value>
+    <value>Nie można usunąć planu zasilania LiteClean: {0}</value>
   </data>
   <data name="Revert.PowerPlan.Error.NothingToDo" xml:space="preserve">
     <value>Brak zmian do cofnięcia: nie zapisano poprzedniego ani zainstalowanego planu zasilania.</value>
@@ -2457,7 +2466,7 @@ Zaktualizuj teraz, aby korzystać z najnowszych funkcji, ulepszeń i poprawek b�
     <value>Pokaż plik zapisu</value>
   </data>
   <data name="OptimizationDetailsDialog.Other.OpenRecordFile.Description" xml:space="preserve">
-    <value>Otwiera plik, w którym optimizerDuck zapisuje, co zrobiła ta optymalizacja. Pozostaje po cofnięciu, więc możesz zajrzeć później.</value>
+    <value>Otwiera plik, w którym LiteClean zapisuje, co zrobiła ta optymalizacja. Pozostaje po cofnięciu, więc możesz zajrzeć później.</value>
   </data>
   <data name="Optimizer.Details.Provider.Registry" xml:space="preserve">
     <value>Rejestr</value>

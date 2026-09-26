@@ -167,6 +167,38 @@ public partial class OptimizationCategoryViewModel
         return FailureResolutionOutcome.Recovered;
     }
 
+    /// <summary>
+    ///     Explains a failure that has nothing left to retry, listing the steps that were refused
+    ///     and, when lack of rights was the cause, what the user has to do about it. Without a
+    ///     retry button the dialog is informational, so it only offers to close.
+    /// </summary>
+    private async Task ShowFailureDetailsAsync(
+        IOptimization optimization,
+        IReadOnlyList<Change> failedSteps,
+        OptimizationOperation operation
+    )
+    {
+        var orderedSteps = failedSteps.OrderBy(s => s.Index).ToList();
+        if (orderedSteps.Count == 0)
+            return;
+
+        var dialogViewModel = new OptimizationResultDialogViewModel(
+            orderedSteps,
+            operation == OptimizationOperation.Revert
+                ? ChangeRecordOperation.Revert
+                : ChangeRecordOperation.Apply
+        );
+
+        var dialog = new ContentDialog
+        {
+            Title = BuildDialogTitle(optimization),
+            Content = new OptimizationResultDialog { DataContext = dialogViewModel },
+        };
+        BindLocalized(dialog, ContentDialog.CloseButtonTextProperty, "Button.Ok");
+
+        await _contentDialogService.ShowAsync(dialog, CancellationToken.None);
+    }
+
     private static OperationNotificationState ResolveApplyNotificationState(
         OptimizationResult applyResult,
         FailureResolutionOutcome retryOutcome
@@ -335,7 +367,9 @@ public partial class OptimizationCategoryViewModel
                 default:
                     _snackbarService.Show(
                         Loc.Instance["RestorePoint.Snackbar.Error.Title"],
-                        Loc.Instance["RestorePoint.Snackbar.Error.Message"],
+                        Loc.Instance["RestorePoint.Snackbar.Error.Message"]
+                            + "\n"
+                            + Loc.Instance["RestorePoint.Hint.RequiresAdministrator"],
                         ControlAppearance.Danger,
                         new SymbolIcon { Symbol = SymbolRegular.ErrorCircle24, Filled = true },
                         TimeSpan.FromSeconds(5)
@@ -344,16 +378,21 @@ public partial class OptimizationCategoryViewModel
                     break;
             }
 
+            // System Restore is a machine-wide setting, so a refusal reads as a broken feature
+            // unless the dialog says that elevation is what it needs.
             var failedMessage =
                 resultState == RestorePointResult.FrequencyLimitReached
                     ? Loc.Instance["RestorePoint.Snackbar.Warning.LimitReached"]
-                    : "";
+                        + "\n"
+                        + Loc.Instance["RestorePoint.Snackbar.Error.Message"]
+                    : Loc.Instance["RestorePoint.Snackbar.Error.Message"]
+                        + "\n"
+                        + Loc.Instance["RestorePoint.Hint.RequiresAdministrator"];
             var failedResult = await _contentDialogService.ShowSimpleDialogAsync(
                 new SimpleContentDialogCreateOptions
                 {
                     Title = Loc.Instance["RestorePoint.Snackbar.Error.Title"],
-                    Content =
-                        failedMessage + $"\n{Loc.Instance["RestorePoint.Snackbar.Error.Message"]}",
+                    Content = failedMessage,
                     PrimaryButtonText = Loc.Instance["Button.Skip"],
                     CloseButtonText = Loc.Instance["Button.Cancel"],
                 },
@@ -370,7 +409,9 @@ public partial class OptimizationCategoryViewModel
             _logger.LogError(e, "Failed to create restore point");
             _snackbarService.Show(
                 Loc.Instance["RestorePoint.Snackbar.Error.Title"],
-                Loc.Instance["RestorePoint.Snackbar.Error.Message"],
+                Loc.Instance["RestorePoint.Snackbar.Error.Message"]
+                    + "\n"
+                    + Loc.Instance["RestorePoint.Hint.RequiresAdministrator"],
                 ControlAppearance.Caution,
                 new SymbolIcon { Symbol = SymbolRegular.Warning24, Filled = true },
                 TimeSpan.FromSeconds(5)

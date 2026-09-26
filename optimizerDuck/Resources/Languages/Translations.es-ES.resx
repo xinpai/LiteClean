@@ -428,13 +428,13 @@
 
   <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.Error.ImportFailed" xml:space="preserve">
 
-    <value>No se pudo importar el plan de energia de optimizerduck.</value>
+    <value>No se pudo importar el plan de energia de LiteClean.</value>
 
   </data>
 
   <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.Error.ActivateFailed" xml:space="preserve">
 
-    <value>No se pudo activar el plan de energia de optimizerduck.</value>
+    <value>No se pudo activar el plan de energia de LiteClean.</value>
 
   </data>
 
@@ -669,6 +669,9 @@
     <value>Algunos pasos no se completaron correctamente. Puedes volver a intertar solo los pasos fallidos.</value>
 
   </data>
+  <data name="OptimizationResultDialog.Hint.RequiresAdministrator" xml:space="preserve">
+    <value>Algunos pasos se rechazaron porque requieren permisos de administrador. Ejecuta LiteClean como administrador y vuelve a intentarlo.</value>
+  </data>
 
   <data name="OptimizationResultDialog.Details" xml:space="preserve">
 
@@ -771,6 +774,9 @@
 
     <value>Acerda de</value>
 
+  </data>
+  <data name="Settings.About.BasedOn" xml:space="preserve">
+    <value>Este proyecto está basado en optimizerDuck.</value>
   </data>
 
   <data name="Dialog.AreYouSure.Title" xml:space="preserve">
@@ -1809,7 +1815,7 @@
 
   <data name="Settings.About.Acknowledgements.Description" xml:space="preserve">
 
-    <value>optimizerDuck es posible gracias a los siguientes proyectos y recursos de código abierto.</value>
+    <value>LiteClean es posible gracias a los siguientes proyectos y recursos de código abierto.</value>
 
   </data>
 
@@ -1829,7 +1835,7 @@ Es una medida de seguridad para proteger Windows antes de aplicar cambios.</valu
 
   <data name="RestorePointDialog.Help" xml:space="preserve">
 
-    <value>La aplicación habilitará automáticamente Restaurar sistema y creará un punto de control llamado "optimizerDuck...".
+    <value>La aplicación habilitará automáticamente Restaurar sistema y creará un punto de control llamado "LiteClean...".
 
 Esto garantiza que siempre puedas volver atrás si algo sale mal.</value>
 
@@ -1841,6 +1847,9 @@ Esto garantiza que siempre puedas volver atrás si algo sale mal.</value>
 
   </data>
 
+  <data name="RestorePoint.Hint.RequiresAdministrator" xml:space="preserve">
+    <value>Crear un punto de restauración requiere permisos de administrador. Ejecuta LiteClean como administrador y vuelve a intentarlo.</value>
+  </data>
   <data name="RestorePoint.Snackbar.Error.Message" xml:space="preserve">
 
     <value>Ocurrió un error al intentar crear el punto de restauración. Intenta crearlo manualmente.</value>
@@ -1946,7 +1955,7 @@ Esto garantiza que siempre puedas volver atrás si algo sale mal.</value>
 
   <data name="Bloatware.Empty.Description" xml:space="preserve">
 
-    <value>optimizerDuck no encontró paquetes AppX eliminables. Está completamente limpio...</value>
+    <value>LiteClean no encontró paquetes AppX eliminables. Está completamente limpio...</value>
 
   </data>
 
@@ -2007,7 +2016,7 @@ Esto garantiza que siempre puedas volver atrás si algo sale mal.</value>
 
   <data name="Dashboard.UpdateInfoBar.Message" xml:space="preserve">
 
-    <value>¡optimizerDuck (v{0}) está disponible!
+    <value>¡LiteClean (v{0}) está disponible!
 
 Actualiza ahora para disfrutar de las nuevas funciones y mejoras.</value>
 
@@ -3075,7 +3084,7 @@ Actualiza ahora para disfrutar de las nuevas funciones y mejoras.</value>
 
 
   <data name="LegalDialog.Intro.Title" xml:space="preserve">
-    <value>¡Bienvenido a optimizerDuck!</value>
+    <value>¡Bienvenido a LiteClean!</value>
   </data>
   <data name="LegalDialog.Intro.Description" xml:space="preserve">
     <value>Elige tu idioma y tema, tómate un momento para revisar nuestros Términos, Política de privacidad y Aviso legal, y estarás listo para continuar.</value>
@@ -3195,16 +3204,11 @@ Actualiza ahora para disfrutar de las nuevas funciones y mejoras.</value>
 
   </data>
 
-  <data name="TitleBar.Support" xml:space="preserve">
-
-    <value>Apoyar el Proyecto</value>
-
+  <data name="TitleBar.Website" xml:space="preserve">
+    <value>Visitar el sitio web</value>
   </data>
-
-  <data name="TitleBar.Discord" xml:space="preserve">
-
-    <value>Únete a la comunidad de Discord</value>
-
+  <data name="TitleBar.Back" xml:space="preserve">
+    <value>Atrás</value>
   </data>
 
   <data name="Optimizer.UI.Tags.Windows10Only" xml:space="preserve">
@@ -3503,7 +3507,7 @@ Actualiza ahora para disfrutar de las nuevas funciones y mejoras.</value>
 
   <data name="Condition.Error.Description" xml:space="preserve">
 
-    <value>optimizerDuck no pudo determinar si este elemento es compatible con tu sistema.</value>
+    <value>LiteClean no pudo determinar si este elemento es compatible con tu sistema.</value>
 
   </data>
 
@@ -3797,7 +3801,7 @@ Actualiza ahora para disfrutar de las nuevas funciones y mejoras.</value>
     <value>No se pudo restaurar el plan de energía anterior: {0}.</value>
   </data>
   <data name="Revert.PowerPlan.Error.DeleteFailed" xml:space="preserve">
-    <value>No se pudo eliminar el plan de energía de optimizerDuck: {0}</value>
+    <value>No se pudo eliminar el plan de energía de LiteClean: {0}</value>
   </data>
   <data name="Revert.PowerPlan.Error.NothingToDo" xml:space="preserve">
     <value>Nada que revertir: no hay ningún plan de energía anterior o instalado registrado.</value>
@@ -4262,7 +4266,7 @@ Actualiza ahora para disfrutar de las nuevas funciones y mejoras.</value>
     <value>Mostrar el archivo del registro</value>
   </data>
   <data name="OptimizationDetailsDialog.Other.OpenRecordFile.Description" xml:space="preserve">
-    <value>Abre el archivo donde optimizerDuck anota lo que hizo esta optimización. Se conserva tras revertir, así que puedes consultarlo después.</value>
+    <value>Abre el archivo donde LiteClean anota lo que hizo esta optimización. Se conserva tras revertir, así que puedes consultarlo después.</value>
   </data>
   <data name="Optimizer.Details.Provider.Registry" xml:space="preserve">
     <value>Registro</value>

@@ -213,10 +213,10 @@
     <value>Mevcut aktif güç planı algılanamadı.</value>
   </data>
   <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.Error.ImportFailed" xml:space="preserve">
-    <value>optimizerDuck güç planı içe aktarılamadı.</value>
+    <value>LiteClean güç planı içe aktarılamadı.</value>
   </data>
   <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.Error.ActivateFailed" xml:space="preserve">
-    <value>optimizerDuck güç planı etkinleştirilemedi.</value>
+    <value>LiteClean güç planı etkinleştirilemedi.</value>
   </data>
   <data name="Optimizer.UI.Tags.System" xml:space="preserve">
     <value>Sistem</value>
@@ -324,6 +324,9 @@
   <data name="OptimizationResultDialog.Description" xml:space="preserve">
     <value>Bazı adımlar başarıyla tamamlanamadı. Yalnızca başarısız adımları yeniden deneyebilirsiniz.</value>
   </data>
+  <data name="OptimizationResultDialog.Hint.RequiresAdministrator" xml:space="preserve">
+    <value>Bazı adımlar yönetici hakları gerektirdiği için reddedildi. LiteClean’i yönetici olarak çalıştırıp tekrar deneyin.</value>
+  </data>
   <data name="OptimizationResultDialog.Details" xml:space="preserve">
     <value>Ayrıntılar</value>
   </data>
@@ -374,6 +377,9 @@
   </data>
   <data name="Settings.About.Header" xml:space="preserve">
     <value>Hakkında</value>
+  </data>
+  <data name="Settings.About.BasedOn" xml:space="preserve">
+    <value>Bu proje optimizerDuck üzerine kurulmuştur.</value>
   </data>
   <data name="Dialog.AreYouSure.Title" xml:space="preserve">
     <value>Devam etmek istediğinizden emin misiniz?</value>
@@ -894,7 +900,7 @@
     <value>Teşekkürler</value>
   </data>
   <data name="Settings.About.Acknowledgements.Description" xml:space="preserve">
-    <value>optimizerDuck, aşağıdaki açık kaynaklı yazılım ve kaynaklar sayesinde mümkün olmuştur.</value>
+    <value>LiteClean, aşağıdaki açık kaynaklı yazılım ve kaynaklar sayesinde mümkün olmuştur.</value>
   </data>
   <data name="RestorePoint.Title" xml:space="preserve">
     <value>Sistem Geri Yükleme</value>
@@ -904,11 +910,14 @@
 Değişiklikleri uygulamadan önce Windows'unuzu korumak için bir güvenlik önlemidir.</value>
   </data>
   <data name="RestorePointDialog.Help" xml:space="preserve">
-    <value>Uygulama, Sistem Geri Yükleme'yi otomatik olarak etkinleştirecek ve "optimizerDuck..." adlı bir kontrol noktası oluşturacaktır.
+    <value>Uygulama, Sistem Geri Yükleme'yi otomatik olarak etkinleştirecek ve "LiteClean..." adlı bir kontrol noktası oluşturacaktır.
 Bu, bir şeyler ters giderse her zaman geri dönebilmenizi sağlar.</value>
   </data>
   <data name="RestorePoint.Snackbar.Error.Title" xml:space="preserve">
     <value>Sistem Geri Yükleme oluşturulamadı veya etkinleştirilemedi.</value>
+  </data>
+  <data name="RestorePoint.Hint.RequiresAdministrator" xml:space="preserve">
+    <value>Geri yükleme noktası oluşturmak yönetici hakları gerektirir. LiteClean'i yönetici olarak çalıştırıp tekrar deneyin.</value>
   </data>
   <data name="RestorePoint.Snackbar.Error.Message" xml:space="preserve">
     <value>Sistem Geri Yükleme oluşturulurken veya etkinleştirilirken bir hata oluştu. Lütfen manuel olarak oluşturmayı deneyin.</value>
@@ -962,7 +971,7 @@ Bu, bir şeyler ters giderse her zaman geri dönebilmenizi sağlar.</value>
     <value>Gereksiz uygulama bulunamadı ¯\_(ツ)_/¯</value>
   </data>
   <data name="Bloatware.Empty.Description" xml:space="preserve">
-    <value>optimizerDuck kaldırılabilir AppX paketi bulamadı. Boş bir uzay gibi...</value>
+    <value>LiteClean kaldırılabilir AppX paketi bulamadı. Boş bir uzay gibi...</value>
   </data>
   <data name="Bloatware.Loading" xml:space="preserve">
     <value>Kaldırılabilir uygulamalar aranıyor...</value>
@@ -992,7 +1001,7 @@ Bu, bir şeyler ters giderse her zaman geri dönebilmenizi sağlar.</value>
     <value>Yüklü AppX paketleri kaldırılırken, yeni kullanıcılar için otomatik yeniden yüklemeyi önlemek amacıyla ilgili Sağlanan paketleri de kaldır.</value>
   </data>
   <data name="Dashboard.UpdateInfoBar.Message" xml:space="preserve">
-    <value>optimizerDuck (v{0}) mevcut!
+    <value>LiteClean (v{0}) mevcut!
 En son özelliklerden, iyileştirmelerden ve hata düzeltmelerinden yararlanmak için şimdi güncelleyin.</value>
   </data>
   <data name="Common.Search.Placeholder" xml:space="preserve">
@@ -1524,7 +1533,7 @@ En son özelliklerden, iyileştirmelerden ve hata düzeltmelerinden yararlanmak 
     <value>Hukuki Sözleşme</value>
   </data>
   <data name="LegalDialog.Intro.Title" xml:space="preserve">
-    <value>optimizerDuck'a hoş geldiniz!</value>
+    <value>LiteClean'a hoş geldiniz!</value>
   </data>
   <data name="LegalDialog.Intro.Description" xml:space="preserve">
     <value>Dilinizi ve temanızı seçin, Hizmet Şartlarımızı, Gizlilik Politikamızı ve Sorumluluk Reddimizi gözden geçirmek için bir dakikanızı ayırın, ardından hazırsınız.</value>
@@ -1607,11 +1616,11 @@ En son özelliklerden, iyileştirmelerden ve hata düzeltmelerinden yararlanmak 
   <data name="Settings.About.Documentation.Description" xml:space="preserve">
     <value>Belgeleri, kullanım kılavuzlarını ve SSS'yi görüntüleyin.</value>
   </data>
-  <data name="TitleBar.Support" xml:space="preserve">
-    <value>Projeyi Destekle</value>
+  <data name="TitleBar.Website" xml:space="preserve">
+    <value>Web sitesini ziyaret et</value>
   </data>
-  <data name="TitleBar.Discord" xml:space="preserve">
-    <value>Discord topluluğuna katıl</value>
+  <data name="TitleBar.Back" xml:space="preserve">
+    <value>Geri</value>
   </data>
   <data name="Optimizer.UI.Tags.Windows10Only" xml:space="preserve">
     <value>Yalnızca Windows 10</value>
@@ -1776,7 +1785,7 @@ En son özelliklerden, iyileştirmelerden ve hata düzeltmelerinden yararlanmak 
     <value>Uyumluluk denetimi başarısız oldu</value>
   </data>
   <data name="Condition.Error.Description" xml:space="preserve">
-    <value>optimizerDuck, bu öğenin sisteminizde desteklenip desteklenmediğini belirleyemedi.</value>
+    <value>LiteClean, bu öğenin sisteminizde desteklenip desteklenmediğini belirleyemedi.</value>
   </data>
   <data name="Condition.Windows11.Title" xml:space="preserve">
     <value>Windows 11 gerekli</value>
@@ -1983,7 +1992,7 @@ En son özelliklerden, iyileştirmelerden ve hata düzeltmelerinden yararlanmak 
     <value>Önceki güç planı geri yüklenemedi: {0}.</value>
   </data>
   <data name="Revert.PowerPlan.Error.DeleteFailed" xml:space="preserve">
-    <value>optimizerDuck güç planı silinemedi: {0}</value>
+    <value>LiteClean güç planı silinemedi: {0}</value>
   </data>
   <data name="Revert.PowerPlan.Error.NothingToDo" xml:space="preserve">
     <value>Geri alınacak bir şey yok: kaydedilmiş önceki veya yüklü güç planı yok.</value>
@@ -2448,7 +2457,7 @@ En son özelliklerden, iyileştirmelerden ve hata düzeltmelerinden yararlanmak 
     <value>Kayıt dosyasını göster</value>
   </data>
   <data name="OptimizationDetailsDialog.Other.OpenRecordFile.Description" xml:space="preserve">
-    <value>Bu iyileştirmenin ne yaptığını optimizerDuck'ın yazdığı dosyayı açar. Geri aldıktan sonra da kalır, sonradan bakabilirsiniz.</value>
+    <value>Bu iyileştirmenin ne yaptığını LiteClean'ın yazdığı dosyayı açar. Geri aldıktan sonra da kalır, sonradan bakabilirsiniz.</value>
   </data>
   <data name="Optimizer.Details.Provider.Registry" xml:space="preserve">
     <value>Kayıt defteri</value>

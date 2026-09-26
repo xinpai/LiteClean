@@ -1,16 +1,20 @@
 <div align="center">
-  <img src="./.github/assets/optimizerDuck.png" alt="optimizerDuck Banner" title="optimizerDuck" width="600"/>
+  <img src="./optimizerDuck/Resources/Images/LiteClean.png" alt="LiteClean Banner" title="LiteClean" width="600"/>
 </div>
 
 # Third-Party Software Notices
 
-**optimizerDuck** is built upon the shoulders of the amazing open-source community. To deliver the best experience, I rely on several third-party libraries and resources. Please note that while these components are integrated into the software, they remain the property of their respective owners and are governed by their own specific licenses.
+**轻净 LiteClean** is built upon the shoulders of the amazing open-source community. To deliver the best experience, this project relies on several third-party libraries and resources. Please note that while these components are integrated into the software, they remain the property of their respective owners and are governed by their own specific licenses.
+
+This program is a modified version of [optimizerDuck](https://github.com/itsfatduck/optimizerDuck)
+— Copyright (C) 2025–2026 fatDuck (itsfatduck). The notices below are retained
+from the original work and cover both the original project and this fork.
 
 > [!TIP]
 > **Help me stay transparent!**
 > If you notice a missing attribution or an incorrect license credit, please let me know. I'll fix it as soon as possible.
 >
-> 📬 **Get in touch:** Open an [Issue](https://github.com/itsfatduck/optimizerDuck/issues) or reach me at: [itsfatduck@gmail.com](mailto:itsfatduck@gmail.com)
+> 📬 **Get in touch:** Open an [Issue](https://github.com/xinpai/LiteClean/issues) or reach me at: [164467616@qq.com](mailto:164467616@qq.com)
 
 ---
 
